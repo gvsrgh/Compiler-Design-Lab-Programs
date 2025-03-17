@@ -67,37 +67,26 @@
 
 
 /* First part of user prologue.  */
-#line 1 "int.y"
+#line 1 ".\\int.y"
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-
-// Declare `yyin` to avoid undeclared error
-extern FILE *yyin;
-
+#include <stdio.h>
 struct quad {
-    char op[5], arg1[10], arg2[10], result[10];
+    char op[5];
+    char arg1[10];
+    char arg2[10];
+    char result[10];
 } QUAD[30];
 
 struct stack {
-    int items[100], top;
+    int items[100];
+    int top;
 } stk;
 
-int Index = 0, tIndex = 0, StNo, Ind, tInd;
+int Index=0,tIndex=0,StNo,Ind,tInd;
 extern int LineNo;
 
-// Declare `yylex()` properly
-int yylex();
-void yyerror(const char *s);
-
-// Ensure functions are defined properly
-void push(int data);
-int pop();
-void AddQuadruple(char op[], char arg1[], char arg2[], char result[]);
-
-
-#line 101 "y.tab.c"
+#line 90 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -157,10 +146,10 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 31 "int.y"
+#line 20 ".\\int.y"
  char var[10]; 
 
-#line 164 "y.tab.c"
+#line 153 "y.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -547,16 +536,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   52
+#define YYLAST   58
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  22
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  18
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  33
+#define YYNRULES  34
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  61
+#define YYNSTATES  62
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   265
@@ -606,10 +595,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    40,    40,    42,    44,    45,    48,    49,    50,    51,
-      54,    56,    56,    58,    60,    61,    62,    63,    64,    65,
-      66,    66,    68,    73,    75,    75,    89,    89,    99,    99,
-      99,   101,   108,   108
+       0,    31,    31,    32,    33,    33,    33,    34,    34,    34,
+      34,    35,    36,    36,    37,    39,    40,    41,    42,    43,
+      44,    45,    45,    47,    48,    50,    50,    55,    55,    57,
+      57,    57,    59,    61,    61
 };
 #endif
 
@@ -640,7 +629,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-40)
+#define YYPACT_NINF (-30)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -654,13 +643,13 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -1,     2,    10,    21,   -40,   -40,    13,     9,    20,    37,
-      17,   -40,    26,    27,   -40,    34,   -40,   -40,     0,    19,
-      19,    28,   -40,   -40,   -40,   -40,   -40,   -40,   -40,   -40,
-     -40,     0,     0,    23,   -40,    40,    29,    30,    37,     2,
-      25,    -5,     0,     0,     0,     0,    43,   -40,   -40,   -40,
-     -40,   -40,    25,    25,   -40,   -40,   -40,     2,     2,   -40,
-     -40
+       6,     5,    21,    15,   -30,   -30,     4,    -7,     8,    25,
+     -30,    19,    15,    23,    26,   -30,    28,   -30,   -30,    -2,
+       7,     7,    24,   -30,   -30,   -30,   -30,   -30,   -30,   -30,
+     -30,   -30,    -2,    -2,    -6,   -30,    32,    17,    27,    25,
+       5,    13,    20,    -2,    -2,    -2,    -2,    40,   -30,   -30,
+     -30,   -30,   -30,    13,    13,   -30,   -30,   -30,     5,     5,
+     -30,   -30
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -669,26 +658,26 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     0,     0,     0,     2,     1,     0,     0,     0,     0,
-       0,     5,     0,     0,     8,    22,     9,    31,     0,     0,
-       0,    12,    10,     3,     4,     6,     7,    26,    23,    21,
-      20,     0,     0,    13,    30,    29,     0,     0,     0,     0,
-      18,     0,     0,     0,     0,     0,     0,    24,    32,    11,
-      27,    19,    15,    14,    16,    17,    28,     0,     0,    25,
-      33
+       4,     0,     6,     0,     0,     9,    23,    10,    32,     0,
+       0,     0,    13,    11,     3,     5,     7,     8,    27,    24,
+      22,    21,     0,     0,    14,    31,    30,     0,     0,     0,
+       0,    19,     0,     0,     0,     0,     0,     0,    25,    33,
+      12,    28,    20,    16,    15,    17,    18,    29,     0,     0,
+      26,    34
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -40,   -40,   -39,   -40,    38,   -40,    11,   -40,   -30,   -40,
-     -40,   -40,   -40,   -40,    32,   -40,   -40,   -40
+     -30,   -30,    -1,    33,   -30,   -30,    10,   -30,   -29,   -30,
+     -30,   -30,   -30,   -30,    29,   -30,   -30,   -30
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     2,     4,    10,    11,    12,    22,    13,    33,    14,
-      15,    57,    28,    39,    36,    16,    17,    58
+       0,     2,    10,    11,    12,    13,    23,    14,    34,    15,
+      16,    58,    29,    40,    37,    17,    18,    59
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -696,22 +685,22 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      50,    40,    41,    29,    30,     1,    42,    43,    44,    45,
-       5,    31,    52,    53,    54,    55,    51,     3,    59,    60,
-      32,     6,    34,    35,     7,     6,     8,     9,     7,    19,
-       8,     9,    18,    23,    42,    43,    44,    45,    44,    45,
-      20,    21,    27,    25,    26,    46,    38,    56,    24,    49,
-      47,    48,    37
+       4,    30,    31,    41,    42,    43,    44,    45,    46,    32,
+      35,    36,     1,    20,    53,    54,    55,    56,    33,     6,
+       3,     5,     7,    19,     8,     9,    45,    46,    21,    22,
+       3,    43,    44,    45,    46,    24,    28,    47,    48,    51,
+      26,    52,    39,    27,    57,    25,     0,     0,    49,    50,
+      38,     0,     0,     0,     0,     0,     0,    60,    61
 };
 
 static const yytype_int8 yycheck[] =
 {
-      39,    31,    32,     3,     4,     6,    11,    12,    13,    14,
-       0,    11,    42,    43,    44,    45,    21,    15,    57,    58,
-      20,     4,     3,     4,     7,     4,     9,    10,     7,    20,
-       9,    10,    19,    16,    11,    12,    13,    14,    13,    14,
-      20,     4,     8,    17,    17,     5,    18,     4,    10,    38,
-      21,    21,    20
+       1,     3,     4,    32,    33,    11,    12,    13,    14,    11,
+       3,     4,     6,    20,    43,    44,    45,    46,    20,     4,
+      15,     0,     7,    19,     9,    10,    13,    14,    20,     4,
+      15,    11,    12,    13,    14,    16,     8,     5,    21,    40,
+      17,    21,    18,    17,     4,    12,    -1,    -1,    21,    39,
+      21,    -1,    -1,    -1,    -1,    -1,    -1,    58,    59
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -719,30 +708,30 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,     6,    23,    15,    24,     0,     4,     7,     9,    10,
-      25,    26,    27,    29,    31,    32,    37,    38,    19,    20,
-      20,     4,    28,    16,    26,    17,    17,     8,    34,     3,
-       4,    11,    20,    30,     3,     4,    36,    36,    18,    35,
-      30,    30,    11,    12,    13,    14,     5,    21,    21,    28,
-      24,    21,    30,    30,    30,    30,     4,    33,    39,    24,
-      24
+      24,    25,    26,    27,    29,    31,    32,    37,    38,    19,
+      20,    20,     4,    28,    16,    25,    17,    17,     8,    34,
+       3,     4,    11,    20,    30,     3,     4,    36,    36,    18,
+      35,    30,    30,    11,    12,    13,    14,     5,    21,    21,
+      28,    24,    21,    30,    30,    30,    30,     4,    33,    39,
+      24,    24
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    22,    23,    24,    25,    25,    26,    26,    26,    26,
-      27,    28,    28,    29,    30,    30,    30,    30,    30,    30,
-      30,    30,    31,    31,    33,    32,    35,    34,    36,    36,
-      36,    37,    39,    38
+       0,    22,    23,    24,    25,    25,    25,    26,    26,    26,
+      26,    27,    28,    28,    29,    30,    30,    30,    30,    30,
+      30,    30,    30,    31,    31,    33,    32,    35,    34,    36,
+      36,    36,    37,    39,    38
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     2,     3,     2,     1,     2,     2,     1,     1,
-       2,     3,     1,     3,     3,     3,     3,     3,     2,     3,
-       1,     1,     1,     2,     0,     6,     0,     3,     3,     1,
-       1,     1,     0,     6
+       0,     2,     2,     3,     1,     2,     1,     2,     2,     1,
+       1,     2,     3,     1,     3,     3,     3,     3,     3,     2,
+       3,     1,     1,     1,     2,     0,     6,     0,     3,     3,
+       1,     1,     1,     0,     6
 };
 
 
@@ -1205,188 +1194,110 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* PROGRAM: MAIN BLOCK  */
-#line 40 "int.y"
-                     { printf("\nProgram recognized correctly!\n"); }
-#line 1212 "y.tab.c"
+  case 14: /* ASSIGNMENT: VAR '=' EXPR  */
+#line 37 ".\\int.y"
+                         { strcpy(QUAD[Index].op,"="); strcpy(QUAD[Index].arg1,(yyvsp[0].var)); strcpy(QUAD[Index].arg2,""); strcpy(QUAD[Index].result,(yyvsp[-2].var)); strcpy((yyval.var),QUAD[Index++].result); }
+#line 1201 "y.tab.c"
     break;
 
-  case 3: /* BLOCK: '{' CODE '}'  */
-#line 42 "int.y"
-                     { printf("\nBlock recognized!\n"); }
-#line 1218 "y.tab.c"
+  case 15: /* EXPR: EXPR '+' EXPR  */
+#line 39 ".\\int.y"
+                    { AddQuadruple("+",(yyvsp[-2].var),(yyvsp[0].var),(yyval.var)); }
+#line 1207 "y.tab.c"
     break;
 
-  case 5: /* CODE: STATEMENT  */
-#line 46 "int.y"
-     { printf("\nCode detected!\n"); }
-#line 1224 "y.tab.c"
+  case 16: /* EXPR: EXPR '-' EXPR  */
+#line 40 ".\\int.y"
+                    { AddQuadruple("-",(yyvsp[-2].var),(yyvsp[0].var),(yyval.var)); }
+#line 1213 "y.tab.c"
     break;
 
-  case 9: /* STATEMENT: WHILEST  */
-#line 52 "int.y"
-          { printf("\nStatement detected!\n"); }
-#line 1230 "y.tab.c"
+  case 17: /* EXPR: EXPR '*' EXPR  */
+#line 41 ".\\int.y"
+                    { AddQuadruple("*",(yyvsp[-2].var),(yyvsp[0].var),(yyval.var)); }
+#line 1219 "y.tab.c"
     break;
 
-  case 10: /* DESCT: TYPE VARLIST  */
-#line 54 "int.y"
-                     { printf("\nDeclaration detected!\n"); }
-#line 1236 "y.tab.c"
+  case 18: /* EXPR: EXPR '/' EXPR  */
+#line 42 ".\\int.y"
+                    { AddQuadruple("/",(yyvsp[-2].var),(yyvsp[0].var),(yyval.var)); }
+#line 1225 "y.tab.c"
     break;
 
-  case 12: /* VARLIST: VAR  */
-#line 56 "int.y"
-                                { printf("\nVariable detected!\n"); }
-#line 1242 "y.tab.c"
+  case 19: /* EXPR: '-' EXPR  */
+#line 43 ".\\int.y"
+               { AddQuadruple("UMIN",(yyvsp[0].var),"",(yyval.var)); }
+#line 1231 "y.tab.c"
     break;
 
-  case 13: /* ASSIGNMENT: VAR '=' EXPR  */
-#line 58 "int.y"
-                          { printf("\nAssignment detected!\n"); }
-#line 1248 "y.tab.c"
+  case 20: /* EXPR: '(' EXPR ')'  */
+#line 44 ".\\int.y"
+                   { strcpy((yyval.var),(yyvsp[-1].var)); }
+#line 1237 "y.tab.c"
     break;
 
-  case 14: /* EXPR: EXPR '+' EXPR  */
-#line 60 "int.y"
-                     { AddQuadruple("+", (yyvsp[-2].var), (yyvsp[0].var), (yyval.var)); }
-#line 1254 "y.tab.c"
+  case 23: /* CONDST: IFST  */
+#line 47 ".\\int.y"
+             { Ind=pop(); sprintf(QUAD[Ind].result,"%d",Index); Ind=pop(); sprintf(QUAD[Ind].result,"%d",Index); }
+#line 1243 "y.tab.c"
     break;
 
-  case 15: /* EXPR: EXPR '-' EXPR  */
-#line 61 "int.y"
-                     { AddQuadruple("-", (yyvsp[-2].var), (yyvsp[0].var), (yyval.var)); }
-#line 1260 "y.tab.c"
-    break;
-
-  case 16: /* EXPR: EXPR '*' EXPR  */
-#line 62 "int.y"
-                     { AddQuadruple("*", (yyvsp[-2].var), (yyvsp[0].var), (yyval.var)); }
-#line 1266 "y.tab.c"
-    break;
-
-  case 17: /* EXPR: EXPR '/' EXPR  */
-#line 63 "int.y"
-                     { AddQuadruple("/", (yyvsp[-2].var), (yyvsp[0].var), (yyval.var)); }
-#line 1272 "y.tab.c"
-    break;
-
-  case 18: /* EXPR: '-' EXPR  */
-#line 64 "int.y"
-                { AddQuadruple("UMIN", (yyvsp[0].var), "", (yyval.var)); }
-#line 1278 "y.tab.c"
-    break;
-
-  case 19: /* EXPR: '(' EXPR ')'  */
-#line 65 "int.y"
-                    { strncpy((yyval.var), (yyvsp[-1].var), sizeof((yyval.var))); }
-#line 1284 "y.tab.c"
-    break;
-
-  case 21: /* EXPR: NUM  */
-#line 66 "int.y"
-                 { printf("\nNumber/Variable Detected!\n"); }
-#line 1290 "y.tab.c"
-    break;
-
-  case 22: /* CONDST: IFST  */
-#line 68 "int.y"
-              {
-    Ind = pop();
-    sprintf(QUAD[Ind].result, "%d", Index);
-    Ind = pop();
-    sprintf(QUAD[Ind].result, "%d", Index);
+  case 25: /* $@1: %empty  */
+#line 50 ".\\int.y"
+                           {
+    strcpy(QUAD[Index].op,"=="); strcpy(QUAD[Index].arg1,(yyvsp[-1].var)); strcpy(QUAD[Index].arg2,"FALSE");
+    strcpy(QUAD[Index].result,"-1"); push(Index); Index++;
 }
+#line 1252 "y.tab.c"
+    break;
+
+  case 26: /* IFST: IF '(' CONDITION ')' $@1 BLOCK  */
+#line 53 ".\\int.y"
+        { strcpy(QUAD[Index].op,"GOTO"); strcpy(QUAD[Index].arg1,""); strcpy(QUAD[Index].arg2,""); strcpy(QUAD[Index].result,"-1"); push(Index); Index++; }
+#line 1258 "y.tab.c"
+    break;
+
+  case 27: /* $@2: %empty  */
+#line 55 ".\\int.y"
+             { tInd=pop(); Ind=pop(); push(tInd); sprintf(QUAD[Ind].result,"%d",Index); }
+#line 1264 "y.tab.c"
+    break;
+
+  case 28: /* ELSEST: ELSE $@2 BLOCK  */
+#line 55 ".\\int.y"
+                                                                                                { Ind=pop(); sprintf(QUAD[Ind].result,"%d",Index); }
+#line 1270 "y.tab.c"
+    break;
+
+  case 29: /* CONDITION: VAR RELOP VAR  */
+#line 57 ".\\int.y"
+                         { AddQuadruple((yyvsp[-1].var),(yyvsp[-2].var),(yyvsp[0].var),(yyval.var)); StNo=Index-1; }
+#line 1276 "y.tab.c"
+    break;
+
+  case 32: /* WHILEST: WHILELOOP  */
+#line 59 ".\\int.y"
+                   { Ind=pop(); sprintf(QUAD[Ind].result,"%d",StNo); Ind=pop(); sprintf(QUAD[Ind].result,"%d",Index); }
+#line 1282 "y.tab.c"
+    break;
+
+  case 33: /* $@3: %empty  */
+#line 61 ".\\int.y"
+                                   {
+    strcpy(QUAD[Index].op,"=="); strcpy(QUAD[Index].arg1,(yyvsp[-1].var)); strcpy(QUAD[Index].arg2,"FALSE"); strcpy(QUAD[Index].result,"-1");
+    push(Index); Index++;
+}
+#line 1291 "y.tab.c"
+    break;
+
+  case 34: /* WHILELOOP: WHILE '(' CONDITION ')' $@3 BLOCK  */
+#line 64 ".\\int.y"
+        { strcpy(QUAD[Index].op,"GOTO"); strcpy(QUAD[Index].arg1,""); strcpy(QUAD[Index].arg2,""); strcpy(QUAD[Index].result,"-1"); push(Index); Index++; }
+#line 1297 "y.tab.c"
+    break;
+
+
 #line 1301 "y.tab.c"
-    break;
-
-  case 24: /* $@1: %empty  */
-#line 75 "int.y"
-                            {
-    strncpy(QUAD[Index].op, "==", sizeof(QUAD[Index].op));
-    strncpy(QUAD[Index].arg1, (yyvsp[-1].var), sizeof(QUAD[Index].arg1));
-    strncpy(QUAD[Index].arg2, "FALSE", sizeof(QUAD[Index].arg2));
-    strncpy(QUAD[Index].result, "-1", sizeof(QUAD[Index].result));
-    push(Index);
-    Index++;
-}
-#line 1314 "y.tab.c"
-    break;
-
-  case 25: /* IFST: IF '(' CONDITION ')' $@1 BLOCK  */
-#line 82 "int.y"
-        {
-    strncpy(QUAD[Index].op, "GOTO", sizeof(QUAD[Index].op));
-    strncpy(QUAD[Index].result, "-1", sizeof(QUAD[Index].result));
-    push(Index);
-    Index++;
-}
-#line 1325 "y.tab.c"
-    break;
-
-  case 26: /* $@2: %empty  */
-#line 89 "int.y"
-              {
-    tInd = pop();
-    Ind = pop();
-    push(tInd);
-    sprintf(QUAD[Ind].result, "%d", Index);
-}
-#line 1336 "y.tab.c"
-    break;
-
-  case 27: /* ELSEST: ELSE $@2 BLOCK  */
-#line 94 "int.y"
-        {
-    Ind = pop();
-    sprintf(QUAD[Ind].result, "%d", Index);
-}
-#line 1345 "y.tab.c"
-    break;
-
-  case 28: /* CONDITION: VAR RELOP VAR  */
-#line 99 "int.y"
-                          { AddQuadruple((yyvsp[-1].var), (yyvsp[-2].var), (yyvsp[0].var), (yyval.var)); StNo = Index - 1; }
-#line 1351 "y.tab.c"
-    break;
-
-  case 31: /* WHILEST: WHILELOOP  */
-#line 101 "int.y"
-                    {
-    Ind = pop();
-    sprintf(QUAD[Ind].result, "%d", StNo);
-    Ind = pop();
-    sprintf(QUAD[Ind].result, "%d", Index);
-}
-#line 1362 "y.tab.c"
-    break;
-
-  case 32: /* $@3: %empty  */
-#line 108 "int.y"
-                                    {
-    strncpy(QUAD[Index].op, "==", sizeof(QUAD[Index].op));
-    strncpy(QUAD[Index].arg1, (yyvsp[-1].var), sizeof(QUAD[Index].arg1));
-    strncpy(QUAD[Index].arg2, "FALSE", sizeof(QUAD[Index].arg2));
-    strncpy(QUAD[Index].result, "-1", sizeof(QUAD[Index].result));
-    push(Index);
-    Index++;
-}
-#line 1375 "y.tab.c"
-    break;
-
-  case 33: /* WHILELOOP: WHILE '(' CONDITION ')' $@3 BLOCK  */
-#line 115 "int.y"
-        {
-    strncpy(QUAD[Index].op, "GOTO", sizeof(QUAD[Index].op));
-    strncpy(QUAD[Index].result, "-1", sizeof(QUAD[Index].result));
-    push(Index);
-    Index++;
-}
-#line 1386 "y.tab.c"
-    break;
-
-
-#line 1390 "y.tab.c"
 
       default: break;
     }
@@ -1579,33 +1490,44 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 122 "int.y"
+#line 66 ".\\int.y"
 
 
-int main() {
-    FILE *fp;
-    int i;
+extern FILE *yyin;
 
-    // Automatically open "test.c" for parsing
-    fp = fopen("test.c", "r");
-    if (!fp) {
-        printf("\n File test.c not found");
-        exit(0);
+int main(int argc, char *argv[]) {
+    FILE *fp; int i;
+    if(argc > 1) {
+        fp = fopen(argv[1],"r");
+        if(!fp) { printf("\n File not found"); exit(0); }
+        yyin = fp;
     }
-    yyin = fp;
-
     yyparse();
-
-    printf("\n\n\t\t ----------------------------\n\t\t Pos Operator Arg1 Arg2 Result\n\t\t --------------------");
-    for (i = 0; i < Index; i++) {
-        printf("\n\t\t %d\t %s\t %s\t %s\t %s", i, QUAD[i].op, QUAD[i].arg1, QUAD[i].arg2, QUAD[i].result);
-    }
+    printf("\n\n\t\t ----------------------------\n\t\t Pos Operator \tArg1 \tArg2 \tResult\n\t\t--------------------");
+    for(i=0; i<Index; i++) { printf("\n\t\t %d\t %s\t %s\t %s\t%s",i,QUAD[i].op,QUAD[i].arg1,QUAD[i].arg2,QUAD[i].result); }
     printf("\n\t\t -----------------------\n\n");
-
-    fclose(fp);
     return 0;
 }
 
-void yyerror(const char *s) {
-    printf("\n Syntax Error: %s on line %d", s, LineNo);
+void push(int data) {
+    stk.top++;
+    if(stk.top==100) { printf("\n Stack overflow\n"); exit(0); }
+    stk.items[stk.top] = data;
 }
+
+int pop() {
+    int data;
+    if(stk.top == -1) { printf("\n Stack underflow\n"); exit(0); }
+    data = stk.items[stk.top--];
+    return data;
+}
+
+void AddQuadruple(char op[5], char arg1[10], char arg2[10], char result[10]) {
+    strcpy(QUAD[Index].op, op);
+    strcpy(QUAD[Index].arg1, arg1);
+    strcpy(QUAD[Index].arg2, arg2);
+    sprintf(QUAD[Index].result, "t%d", tIndex++);
+    strcpy(result, QUAD[Index++].result);
+}
+
+yyerror() { printf("\n Error on line no:%d", LineNo); }
